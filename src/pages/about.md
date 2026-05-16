@@ -3,35 +3,31 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+# 关于我
 
-![Astro Paper](public/astropaper-og.jpg)
+我叫冯科雅（Coya），2002 年生，佛山大学计算机科学与技术本科（2025 届）。
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+目前在公司 AI 部负责"用 AI 为企业提效"——把 AI 落地到真实业务场景里。
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+## 现在在做的事
 
-## Features
+- 构建基于 Hermes Agent + Obsidian 的个人操作系统
+- AI 驱动的营销物料生成与优化
+- 企业知识管理自动化
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+## 技术栈
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+**AI & Agent：** Hermes Agent、OpenAI API、Claude、MiniMax  
+**语言：** Python、TypeScript  
+**工具：** Obsidian、飞书、Vercel、GitHub  
+**兴趣：** LLM 应用、自动化工作流、个人效率系统
 
-and so much more.
+## 找到我
 
-## Show your support
+- GitHub: [coyafky](https://github.com/coyafky)
+- 邮箱: coya20020824@gmail.com
+- 微信: 17620770627
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+---
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
-
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
-
-Kyay zuu! 🙏🏼
+*这个博客用来记录工作中的 AI 实践、技术踩坑和效率方法。*
