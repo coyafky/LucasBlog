@@ -1,11 +1,15 @@
 ---
-title: "开源电商套图 Skill 解读：一个人做淘宝/抖音/亚马逊图需要多久？"
-pubDatetime: 2026-05-17T08:00:00+08:00
-modDatetime: 2026-05-17T08:00:00+08:00
-description: "拆解 wzj177/ecommerce-image-suite 的设计逻辑，探讨 AI 商品图套图工具的实际价值与局限"
-tags: ["AI", "电商", "图片生成", "Prompt", "电商套图"]
+author: "冯科雅 (Coya Feng)"
+pubDatetime: 2026-05-16T22:42:32+08:00
+title: "Github 仓库：ecommerce-image-suite"
+featured: false
+draft: false
+tags:
+  - "AI"
+  - "github"
+description: "AI 生成电商主图"
+timezone: "Asia/Shanghai"
 ---
-
 ## 核心结论
 
 这个仓库（[wzj177/ecommerce-image-suite](https://github.com/wzj177/ecommerce-image-suite)，⭐ 124）解决的是一个具体问题：**电商卖家上传一张商品图，能不能一键生成淘宝/抖音/亚马逊全套主图？**
