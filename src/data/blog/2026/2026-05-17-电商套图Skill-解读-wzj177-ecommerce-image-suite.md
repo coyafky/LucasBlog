@@ -1,6 +1,7 @@
 ---
 title: "开源电商套图 Skill 解读：一个人做淘宝/抖音/亚马逊图需要多久？"
-date: "2026-05-17"
+pubDatetime: 2026-05-17T08:00:00+08:00
+modDatetime: 2026-05-17T08:00:00+08:00
 description: "拆解 wzj177/ecommerce-image-suite 的设计逻辑，探讨 AI 商品图套图工具的实际价值与局限"
 tags: ["AI", "电商", "图片生成", "Prompt", "电商套图"]
 ---
