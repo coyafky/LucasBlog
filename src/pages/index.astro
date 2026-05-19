@@ -16,46 +16,184 @@ const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const recentPosts = sortedPosts.filter(
+  ({ data }) => !data.featured && data.contentType === "blog"
+);
+
+const stats = [
+  ["05", "公开项目"],
+  ["02", "写作模板"],
+  ["04", "内容类型"],
+] as const;
+
+const focusItems = [
+  {
+    title: "项目档案",
+    href: "/projects/",
+    desc: "记录 Hermes、飞书自动化、内容运营和小程序需求等真实项目。",
+    meta: "Project cases",
+  },
+  {
+    title: "工具栈",
+    href: "/tools/",
+    desc: "整理我正在使用的 AI Agent、知识库、自动化和开发工具。",
+    meta: "Working stack",
+  },
+  {
+    title: "方法论",
+    href: "/methods/",
+    desc: "沉淀业务拆解、数据驱动、Agent 工作流和周复盘方法。",
+    meta: "Playbook",
+  },
+] as const;
 ---
 
 <Layout>
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
-    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        {SITE.title}
-      </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+    <section
+      id="hero"
+      class:list={[
+        "grid grid-cols-[minmax(0,1fr)_112px] items-start gap-x-4 gap-y-6 py-6 sm:grid-cols-[1fr_240px] sm:items-center sm:gap-8 sm:py-10",
+        "border-b border-border",
+      ]}
+    >
+      <div class="min-w-0">
+        <div class="mb-4 inline-flex max-w-full border border-border px-2.5 py-1 text-[0.7rem] leading-5 text-foreground/70 sm:mb-5 sm:px-3 sm:text-xs">
+          AI Agent · Career Archive
+        </div>
+        <div class="flex min-w-0 items-center gap-2 sm:gap-3">
+          <h1 class="min-w-0 text-3xl leading-tight font-bold text-balance sm:text-6xl">
+            冯科雅 Coya
+          </h1>
+          <a
+            target="_blank"
+            href="/rss.xml"
+            class="inline-flex size-8 flex-none items-center justify-center"
+            aria-label="rss feed"
+            title="RSS Feed"
+          >
+            <IconRss
+              width={18}
+              height={18}
+              class="stroke-accent stroke-3 rtl:-rotate-90 sm:scale-125"
+            />
+            <span class="sr-only">RSS Feed</span>
+          </a>
+        </div>
 
-      <p>
-        {SITE.desc}
-      </p>
-      <p class="mt-2">
-        记录工作中的 AI 实践、技术踩坑和效率方法。
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">社交链接：</div>
-            <Socials />
-          </div>
-        )
-      }
+        <p class="mt-4 text-lg leading-7 font-medium text-balance sm:mt-5 sm:text-2xl">
+          AI Agent 与企业提效实践记录。
+        </p>
+      </div>
+
+      <div class="overflow-hidden border border-border bg-muted/25 p-2 sm:row-span-2 sm:p-4">
+        <img
+          src="/coya-profile.png"
+          alt="冯科雅 Coya 的黑白线稿头像"
+          width="1181"
+          height="1332"
+          class="mx-auto aspect-[4/5] max-h-36 w-full object-cover object-top sm:aspect-auto sm:max-h-72 sm:object-contain"
+        />
+      </div>
+
+      <div class="col-span-2 sm:col-span-1">
+        <p class="max-w-2xl text-base leading-7 sm:leading-8">
+          我把每周的真实工作、项目推进、工具使用和思考方法沉淀下来，
+          让未来的企业能快速看到我如何学习、做事和用 AI 解决业务问题。
+        </p>
+        <div class="mt-6 grid grid-cols-2 gap-3 text-sm sm:flex sm:flex-wrap">
+          <LinkButton
+            href="/projects/"
+            class="inline-flex items-center justify-center border border-accent bg-accent px-4 py-2.5 text-background hover:bg-background hover:text-accent sm:justify-start sm:py-2"
+          >
+            查看项目
+            <IconArrowRight class="inline-block rtl:-rotate-180" />
+          </LinkButton>
+          <LinkButton
+            href="/posts/"
+            class="inline-flex items-center justify-center border border-border px-4 py-2.5 sm:justify-start sm:py-2"
+          >
+            阅读博客
+          </LinkButton>
+        </div>
+        <div class="mt-6 grid max-w-lg grid-cols-3 border-y border-border sm:mt-8">
+          {
+            stats.map(([value, label]) => (
+              <div class="border-e border-border px-3 py-3 last:border-e-0 sm:py-4">
+                <div class="text-xl font-semibold text-accent sm:text-2xl">
+                  {value}
+                </div>
+                <div class="mt-1 text-xs">{label}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="sm:col-span-2">
+        {
+          // only display if at least one social link is enabled
+          SOCIALS.length > 0 && (
+            <div class="flex border-t border-border pt-4 text-sm max-sm:flex-col sm:items-center">
+              <div class="me-3 mb-1 text-xs whitespace-nowrap sm:mb-0">
+                Links
+              </div>
+              <Socials />
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <section id="career-map" class="border-b border-border py-8 sm:py-12">
+      <h2 class="text-xl font-semibold tracking-wide sm:text-2xl">
+        职业成长档案
+      </h2>
+      <div class="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-3 sm:gap-4">
+        {
+          focusItems.map(item => (
+            <a
+              href={item.href}
+              class="group block border border-border p-4 transition-colors hover:border-accent hover:bg-muted/25 focus-visible:no-underline sm:p-5"
+            >
+              <div class="mb-5 text-xs text-foreground/60 sm:mb-8">
+                {item.meta}
+              </div>
+              <h3 class="font-semibold text-accent">{item.title}</h3>
+              <p class="mt-3 text-sm leading-6">{item.desc}</p>
+              <span class="mt-5 inline-block text-sm group-hover:text-accent">
+                进入
+                <IconArrowRight class="inline-block size-4 rtl:-rotate-180" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="hermes-case" class="border-b border-border py-8 sm:py-12">
+      <div
+        class="grid gap-5 border border-border bg-muted/20 p-4 sm:grid-cols-[1fr_220px] sm:items-center sm:gap-6 sm:p-6"
+      >
+        <div>
+          <div class="mb-3 text-xs">Featured Case</div>
+          <h2 class="text-xl font-semibold tracking-wide sm:text-2xl">
+            Hermes Personal API
+          </h2>
+          <p class="mt-3 leading-7">
+            我把 Hermes 当成重点项目案例：它不是单个工具，而是连接个人知识库、
+            飞书工作流、项目档案和每周复盘的 AI Agent 操作层。
+          </p>
+        </div>
+        <LinkButton
+          href="/projects/"
+          class="border border-border px-4 py-2 text-center"
+        >
+          查看案例
+          <IconArrowRight class="inline-block rtl:-rotate-180" />
+        </LinkButton>
+      </div>
     </section>
 
     {
@@ -80,7 +218,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">最近文章</h2>
+          <div class="mb-4 flex items-end justify-between gap-4">
+            <h2 class="text-2xl font-semibold tracking-wide">最近博客</h2>
+            <LinkButton href="/posts/" class="text-sm">
+              全部
+              <IconArrowRight class="inline-block size-4 rtl:-rotate-180" />
+            </LinkButton>
+          </div>
           <ul>
             {recentPosts.map(
               (data, index) =>
@@ -90,13 +234,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         </section>
       )
     }
-
-    <div class="my-8 text-center">
-      <LinkButton href="/posts/">
-        全部文章
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
   </main>
   <Footer />
 </Layout>

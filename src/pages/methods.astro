@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { SITE } from "@/config";
+
+const posts = await getCollection(
+  "blog",
+  ({ data }) => !data.draft && data.contentType === "method"
+);
+const methodPosts = getSortedPosts(posts);
+
+const methods = [
+  ["数据驱动", "先收集可验证材料，再输出判断，不靠感觉做结论。"],
+  ["结构化拆解", "把业务问题拆成对象、流程、约束、指标和下一步动作。"],
+  ["业务流程识别", "先理解真实工作流，再判断哪些环节适合 AI 提效。"],
+  ["Agent 工作流", "让 AI 不只回答问题，而是能读取、执行、沉淀和复盘。"],
+  ["周复盘", "每周把做过的事整理成可复用经验，持续积累求职证据。"],
+] as const;
+---
+
+<Layout title={`方法 | ${SITE.title}`}>
+  <Header />
+  <Main
+    pageTitle="方法"
+    pageDesc="这里沉淀我做 AI 提效时反复使用的思考方式和工作方法。"
+  >
+    <section class="grid gap-4 sm:grid-cols-2">
+      {
+        methods.map(([name, desc]) => (
+          <article class="border border-border p-4">
+            <h2 class="text-xl font-semibold text-accent">{name}</h2>
+            <p class="mt-3">{desc}</p>
+          </article>
+        ))
+      }
+    </section>
+
+    {
+      methodPosts.length > 0 && (
+        <section class="mt-10">
+          <h2 class="text-2xl font-semibold tracking-wide">方法文章</h2>
+          <ul>
+            {methodPosts.map(data => (
+              <Card {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </Main>
+  <Footer />
+</Layout>

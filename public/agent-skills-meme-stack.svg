@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" width="1280" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Skills Meme Stack</title>
+  <desc id="desc">A layered meme-style structure diagram for coding agent skills: meta, behavior, workflow, execution, verification, and responsibility.</desc>
+  <style>
+    text {
+      font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei", "SimHei", sans-serif;
+      fill: #111827;
+    }
+    .title { font-size: 34px; font-weight: 700; }
+    .subtitle { font-size: 15px; fill: #6b7280; }
+    .layer-label { font-size: 15px; font-weight: 700; fill: #111827; }
+    .layer-note { font-size: 12px; fill: #6b7280; }
+    .skill-name { font-size: 17px; font-weight: 700; }
+    .skill-note { font-size: 12px; fill: #4b5563; }
+    .micro { font-size: 11px; fill: #6b7280; }
+    .step { font-size: 18px; font-weight: 700; fill: #0f172a; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#9333ea"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#16a34a"/>
+    </marker>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#111827" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="900" fill="#f8fafc"/>
+  <rect x="44" y="34" width="1192" height="832" rx="28" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <text x="78" y="86" class="title">Agent Skills Meme Stack</text>
+  <text x="80" y="114" class="subtitle">从“别急着写代码”到“别差不多就收工”的 Coding Agent 技能闭环</text>
+
+  <g transform="translate(80,148)">
+    <rect x="0" y="0" width="1120" height="100" rx="18" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <text x="24" y="36" class="layer-label">元层：先找到该用什么能力</text>
+    <text x="24" y="61" class="layer-note">Skill discovery / orchestration</text>
+    <g transform="translate(330,20)">
+      <rect width="250" height="62" rx="14" fill="#ffffff" stroke="#93c5fd" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">using-superpowers</text>
+      <text x="18" y="48" class="skill-note">调度中枢，先检索再行动</text>
+    </g>
+    <g transform="translate(610,20)">
+      <rect width="220" height="62" rx="14" fill="#ffffff" stroke="#93c5fd" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">find-skills</text>
+      <text x="18" y="48" class="skill-note">连接外部技能生态</text>
+    </g>
+  </g>
+
+  <path d="M640 250 L640 286" stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#arrow-blue)"/>
+
+  <g transform="translate(80,292)">
+    <rect x="0" y="0" width="1120" height="100" rx="18" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+    <text x="24" y="36" class="layer-label">行为层：约束 Agent 的坏习惯</text>
+    <text x="24" y="61" class="layer-note">Think first / stay simple / own the finish</text>
+    <g transform="translate(330,20)">
+      <rect width="260" height="62" rx="14" fill="#ffffff" stroke="#c4b5fd" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">karpathy-guidelines</text>
+      <text x="18" y="48" class="skill-note">少假设、少过度设计、少烂尾</text>
+    </g>
+    <g transform="translate(620,20)">
+      <rect width="250" height="62" rx="14" fill="#ffffff" stroke="#c4b5fd" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">/pua</text>
+      <text x="18" y="48" class="skill-note">反讽式高压问责：别糊弄收尾</text>
+    </g>
+  </g>
+
+  <path d="M640 394 L640 430" stroke="#9333ea" stroke-width="2.5" fill="none" marker-end="url(#arrow-purple)"/>
+
+  <g transform="translate(80,436)">
+    <rect x="0" y="0" width="1120" height="114" rx="18" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+    <text x="24" y="40" class="layer-label">流程层：先想清楚，再拆到能执行</text>
+    <text x="24" y="67" class="layer-note">Requirement dialogue → executable plan</text>
+    <g transform="translate(330,24)">
+      <rect width="250" height="66" rx="14" fill="#ffffff" stroke="#fdba74" filter="url(#soft-shadow)"/>
+      <text x="18" y="29" class="skill-name">brainstorming</text>
+      <text x="18" y="50" class="skill-note">设计先行，未批准不编码</text>
+    </g>
+    <path d="M596 57 L634 57" stroke="#f97316" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
+    <g transform="translate(650,24)">
+      <rect width="250" height="66" rx="14" fill="#ffffff" stroke="#fdba74" filter="url(#soft-shadow)"/>
+      <text x="18" y="29" class="skill-name">writing-plans</text>
+      <text x="18" y="50" class="skill-note">2-5 分钟粒度，可验收任务</text>
+    </g>
+  </g>
+
+  <path d="M640 552 L640 588" stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#arrow-blue)"/>
+
+  <g transform="translate(80,594)">
+    <rect x="0" y="0" width="1120" height="100" rx="18" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+    <text x="24" y="36" class="layer-label">执行层：把页面和体验做得像真的产品</text>
+    <text x="24" y="61" class="layer-note">Design language / UI system / frontend craft</text>
+    <g transform="translate(330,20)">
+      <rect width="250" height="62" rx="14" fill="#ffffff" stroke="#86efac" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">frontend-design</text>
+      <text x="18" y="48" class="skill-note">明确设计语言，拒绝模板味</text>
+    </g>
+    <g transform="translate(610,20)">
+      <rect width="250" height="62" rx="14" fill="#ffffff" stroke="#86efac" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">ui-ux-pro-max</text>
+      <text x="18" y="48" class="skill-note">重型设计系统生成器</text>
+    </g>
+  </g>
+
+  <path d="M640 696 L640 732" stroke="#16a34a" stroke-width="2.5" fill="none" marker-end="url(#arrow-green)"/>
+
+  <g transform="translate(80,738)">
+    <rect x="0" y="0" width="1120" height="100" rx="18" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1.5"/>
+    <text x="24" y="36" class="layer-label">验证层：不要猜，打开浏览器看证据</text>
+    <text x="24" y="61" class="layer-note">Root cause → browser I/O → screenshots/logs/tests</text>
+    <g transform="translate(300,20)">
+      <rect width="250" height="62" rx="14" fill="#ffffff" stroke="#5eead4" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">systematic-debugging</text>
+      <text x="18" y="48" class="skill-note">四阶段诊断，禁止猜测修复</text>
+    </g>
+    <g transform="translate(570,20)">
+      <rect width="220" height="62" rx="14" fill="#ffffff" stroke="#5eead4" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">webapp-testing</text>
+      <text x="18" y="48" class="skill-note">Playwright 截图与日志</text>
+    </g>
+    <g transform="translate(810,20)">
+      <rect width="210" height="62" rx="14" fill="#ffffff" stroke="#5eead4" filter="url(#soft-shadow)"/>
+      <text x="18" y="27" class="skill-name">agent-browser</text>
+      <text x="18" y="48" class="skill-note">浏览器作为标准 I/O</text>
+    </g>
+  </g>
+
+  <g transform="translate(280,846)">
+    <rect x="0" y="-32" width="720" height="54" rx="27" fill="#111827"/>
+    <text x="44" y="2" class="step" fill="#ffffff">想清楚</text>
+    <text x="164" y="2" class="step" fill="#ffffff">→ 拆细</text>
+    <text x="284" y="2" class="step" fill="#ffffff">→ 做精</text>
+    <text x="404" y="2" class="step" fill="#ffffff">→ 验透</text>
+    <text x="524" y="2" class="step" fill="#ffffff">→ 担责</text>
+  </g>
+
+  <g transform="translate(1015,82)">
+    <rect width="160" height="42" rx="21" fill="#fef2f2" stroke="#fecaca"/>
+    <text x="22" y="27" class="micro">Meme mode: ON</text>
+  </g>
+</svg>

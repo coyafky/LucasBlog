@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Datetime from "@/components/Datetime.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const timelinePosts = getSortedPosts(posts);
+
+const contentTypeLabels = {
+  blog: "博客",
+  project: "项目",
+  tool: "工具",
+  method: "方法",
+} as const;
+
+const statusLabels = {
+  active: "进行中",
+  done: "已完成",
+  learning: "学习中",
+  paused: "暂停",
+} as const;
+---
+
+<Layout title={`时间线 | ${SITE.title}`}>
+  <Header />
+  <Main
+    pageTitle="时间线"
+    pageDesc="按时间查看所有公开积累：每周复盘、项目档案、工具笔记和方法沉淀。"
+  >
+    <ol class="relative border-s border-border ps-5">
+      {
+        timelinePosts.map(({ id, data, filePath }) => (
+          <li class="relative mb-8 ps-4 last:mb-0">
+            <span class="absolute -start-[1.82rem] top-1 size-3 rounded-full border border-border bg-background ring-4 ring-background" />
+            <div class="mb-2 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full border border-border bg-muted/40 px-2.5 py-0.5">
+                {contentTypeLabels[data.contentType]}
+              </span>
+              {data.status && (
+                <span class="rounded-full border border-border bg-muted/40 px-2.5 py-0.5">
+                  {statusLabels[data.status]}
+                </span>
+              )}
+            </div>
+            <a
+              href={getPath(id, filePath)}
+              class="inline-block text-lg font-semibold text-accent decoration-dashed underline-offset-4 hover:underline"
+            >
+              {data.title}
+            </a>
+            <Datetime {...data} />
+            <p class="mt-2">{data.description}</p>
+            {data.takeaway && (
+              <p class="mt-2 text-sm">核心收获：{data.takeaway}</p>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </Main>
+  <Footer />
+</Layout>

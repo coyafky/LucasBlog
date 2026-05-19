@@ -1,0 +1,254 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Datetime from "@/components/Datetime.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const recentUpdates = getSortedPosts(posts).slice(0, 5);
+
+const contentTypeLabels = {
+  blog: "博客",
+  project: "项目",
+  tool: "工具",
+  method: "方法",
+} as const;
+
+const statusLabels = {
+  active: "进行中",
+  done: "已完成",
+  learning: "学习中",
+  paused: "暂停",
+} as const;
+
+const capabilityGroups = [
+  {
+    title: "AI 应用与工作流",
+    body: "使用 Hermes、OpenClaw、飞书和 Codex 搭建轻量 Agent，覆盖客服、内容起稿、线索整理和项目复盘场景。",
+  },
+  {
+    title: "业务理解与执行",
+    body: "围绕门店咨询、内容获客、客户跟进等真实流程拆解问题，并输出可演示、可复盘的 AI 原型。",
+  },
+  {
+    title: "数据与内容运营",
+    body: "用 Excel、趋势工具和内容资料清洗询盘、关键词、竞品与选题，把营销工作变成可迭代系统。",
+  },
+  {
+    title: "沟通与协作",
+    body: "熟悉飞书协作、文档同步、任务跟进和跨角色沟通，具备基础英文沟通能力和外贸业务经验。",
+  },
+] as const;
+
+const projectHighlights = [
+  {
+    title: "Hermes Personal API",
+    meta: "AI Agent 个人操作系统",
+    body: "把个人知识库、协作工具、项目记录和每周复盘接入 Agent，让 AI 持续沉淀上下文并推动真实任务。",
+    href: "/posts/2026/2026-05-18-hermes-personal-api-ai-agent-personal-os/",
+  },
+  {
+    title: "Hermes 云部署 Sales Agent",
+    meta: "公司销售场景 · 云部署 Agent",
+    body: "围绕车膜销售、客服和招商流程搭建飞书 AI 机器人，用销售 Skill、产品知识库和权限边界支持咨询、推荐、异议处理和跟进消息。",
+    href: "/posts/2026/2026-05-19-hermes-cloud-sales-agent/",
+  },
+  {
+    title: "OpenClaw 业务 Agent 设计与落地",
+    meta: "2026/04 · 开发者",
+    body: "基于 OpenClaw + 飞书搭建车膜客服、门店后台线索整理、营销内容助手等 3 类业务 Agent 原型。",
+    href: "/projects/",
+  },
+  {
+    title: "车膜换色 Demo 设计",
+    meta: "2026/04 · 开发者",
+    body: "围绕车膜门店展示场景，设计客户发送车图和颜色需求后返回换色效果参考的业务原型。",
+    href: "/projects/",
+  },
+] as const;
+
+const workExperiences = [
+  {
+    title: "外贸业务员",
+    org: "广州互诚密胺制品有限公司",
+    date: "2025/09 - 2025/12",
+    points: ["参与海外客户开发、产品介绍、报价沟通和订单跟进。", "通过客户筛选、主动沟通和持续跟进，任职期间促成 2 单成交。"],
+  },
+  {
+    title: "阿里巴巴国际站运营",
+    org: "美鑫梳刷制造有限公司",
+    date: "2025/06 - 2025/08",
+    points: ["结合 B2B 买家搜索习惯和 AI 工具产出 20+ 组英文标题方案。", "使用 Excel 清洗 100+ 条客户询盘数据，并按关键词标记和分类。"],
+  },
+] as const;
+---
+
+<Layout title={`关于 | ${SITE.title}`}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-16" data-pagefind-body>
+    <section class="grid gap-8 border-b border-border py-10 sm:grid-cols-[1fr_260px] sm:items-center">
+      <div>
+        <div class="mb-4 text-xs font-semibold tracking-wide text-accent">
+          AI Agent · 企业提效 · 业务自动化
+        </div>
+        <h1 class="text-4xl leading-tight font-bold sm:text-5xl">
+          冯科雅 Coya
+        </h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8">
+          我关注 AI Agent 如何进入真实业务流程：从客户咨询、内容运营、线索整理到项目复盘，把工具能力变成可展示、可验证、可持续更新的工作结果。
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3 text-sm">
+          <a class="border border-accent bg-accent px-4 py-2 text-background hover:bg-background hover:text-accent" href="/projects/">
+            查看项目
+          </a>
+          <a class="border border-border px-4 py-2 hover:text-accent" href="/timeline/">
+            成长时间线
+          </a>
+          <a class="border border-border px-4 py-2 hover:text-accent" href="mailto:coya20020824@gmail.com">
+            邮件联系
+          </a>
+        </div>
+      </div>
+      <div class="border border-border bg-muted/20 p-4">
+        <img
+          src="/coya-profile.png"
+          alt="冯科雅 Coya 的黑白线稿头像"
+          width="1181"
+          height="1332"
+          class="mx-auto max-h-80 w-full object-contain"
+        />
+      </div>
+    </section>
+
+    <section class="grid gap-6 border-b border-border py-10 sm:grid-cols-3">
+      <div>
+        <div class="text-sm text-foreground/60">当前状态</div>
+        <p class="mt-2 font-semibold">开放 AI Agent / 企业提效相关机会</p>
+      </div>
+      <div>
+        <div class="text-sm text-foreground/60">教育背景</div>
+        <p class="mt-2 font-semibold">佛山大学 · 计算机科学与技术本科</p>
+        <p class="mt-1 text-sm">2021/09 - 2025/06</p>
+      </div>
+      <div>
+        <div class="text-sm text-foreground/60">公开联系</div>
+        <p class="mt-2">
+          <a class="text-accent decoration-dashed underline-offset-4 hover:underline" href="mailto:coya20020824@gmail.com">
+            coya20020824@gmail.com
+          </a>
+        </p>
+        <p class="mt-1">
+          <a class="text-accent decoration-dashed underline-offset-4 hover:underline" href="https://github.com/coyafky">
+            GitHub: coyafky
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="text-2xl font-semibold">能力地图</h2>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        {
+          capabilityGroups.map(item => (
+            <article class="border border-border p-5">
+              <h3 class="font-semibold text-accent">{item.title}</h3>
+              <p class="mt-3 leading-7">{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold">项目经历</h2>
+        <a class="text-sm text-accent decoration-dashed underline-offset-4 hover:underline" href="/projects/">
+          全部项目
+        </a>
+      </div>
+      <div class="grid gap-4">
+        {
+          projectHighlights.map(project => (
+            <article class="border border-border p-5">
+              <div class="text-xs text-foreground/60">{project.meta}</div>
+              <h3 class="mt-2 font-semibold text-accent">
+                <a href={project.href}>{project.title}</a>
+              </h3>
+              <p class="mt-3 leading-7">{project.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="text-2xl font-semibold">工作与教育</h2>
+      <div class="mt-6 grid gap-6">
+        {
+          workExperiences.map(exp => (
+            <article>
+              <div class="text-sm text-foreground/60">{exp.date}</div>
+              <h3 class="mt-1 font-semibold">
+                {exp.title} · {exp.org}
+              </h3>
+              <ul class="mt-3 list-disc space-y-2 ps-5">
+                {exp.points.map(point => <li>{point}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+        <article>
+          <div class="text-sm text-foreground/60">2021/09 - 2025/06</div>
+          <h3 class="mt-1 font-semibold">佛山大学 · 计算机科学与技术本科</h3>
+          <p class="mt-3 leading-7">
+            主修操作系统、数据库、软件工程、软件测试。毕业设计为智能家教推荐系统，参与测试用例编写、接口测试及问题跟进，使用 Postman 发现并协同修复 3 处接口问题。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="py-10">
+      <div class="grid gap-8 sm:grid-cols-[260px_1fr]">
+        <div>
+          <h2 class="text-2xl font-semibold">每周简历更新</h2>
+          <p class="mt-4 leading-7">
+            每周新增的博客、项目档案、工具笔记和方法沉淀，会自动进入这里的最近更新流。后续可以从这些记录里提炼成新版简历的项目 bullet。
+          </p>
+          <a class="mt-4 inline-block text-sm text-accent decoration-dashed underline-offset-4 hover:underline" href="/timeline/">
+            查看完整时间线
+          </a>
+        </div>
+        <div class="grid gap-4">
+          {
+            recentUpdates.map(({ id, data, filePath }) => (
+              <article class="border border-border p-4">
+                <div class="mb-2 flex flex-wrap gap-2 text-xs">
+                  <span class="rounded-full border border-border bg-muted/40 px-2.5 py-0.5">
+                    {contentTypeLabels[data.contentType]}
+                  </span>
+                  {data.status && (
+                    <span class="rounded-full border border-border bg-muted/40 px-2.5 py-0.5">
+                      {statusLabels[data.status]}
+                    </span>
+                  )}
+                </div>
+                <a class="font-semibold text-accent decoration-dashed underline-offset-4 hover:underline" href={getPath(id, filePath)}>
+                  {data.title}
+                </a>
+                <Datetime {...data} />
+                <p class="mt-2 text-sm leading-6">{data.takeaway || data.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

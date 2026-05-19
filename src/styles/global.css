@@ -21,7 +21,9 @@ html[data-theme="dark"] {
 }
 
 @theme inline {
-  --font-app: var(--font-google-sans-code);
+  --font-app:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
@@ -60,7 +62,7 @@ html[data-theme="dark"] {
 }
 
 .active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  @apply text-accent underline decoration-2 underline-offset-8;
 }
 
 /* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */

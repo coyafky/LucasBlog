@@ -1,0 +1,108 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { SITE } from "@/config";
+
+const posts = await getCollection(
+  "blog",
+  ({ data }) => !data.draft && data.contentType === "project"
+);
+const projectPosts = getSortedPosts(posts);
+
+const projects = [
+  {
+    title: "Hermes Personal API",
+    status: "持续维护",
+    desc: "这是我的重点 AI Agent 项目：用 Hermes 连接个人知识库、协作工具、项目记录和每周复盘，让 AI 不只回答问题，而是持续理解上下文并推动真实任务。",
+    evidence:
+      "公开层面展示为：跨会话记忆、工具协同、项目档案、周复盘模板和职业成长档案站点。",
+    href: "/posts/2026/2026-05-18-hermes-personal-api-ai-agent-personal-os/",
+  },
+  {
+    title: "Hermes 云部署 Sales Agent",
+    status: "持续迭代",
+    desc: "面向公司销售、客服和招商场景的 Hermes 云部署项目：通过飞书机器人、模块化销售 Skill、结构化产品知识库和权限边界，把销售咨询、产品推荐、异议处理、跟进消息等流程接入 Agent。",
+    evidence:
+      "GitHub 仓库、架构说明、Hermes Profile 打包、销售 Skill 模块、JSONL 知识库和部署说明。",
+    href: "/posts/2026/2026-05-19-hermes-cloud-sales-agent/",
+    repo: "https://github.com/coyafky/hermes-cloud-deployment",
+  },
+  {
+    title: "车膜内容运营系统",
+    status: "进行中",
+    desc: "围绕车膜业务做数据采集、知识库整理、内容选题、竞品监控和发布复盘，目标是把内容运营做成可迭代系统。",
+    evidence: "语料采集、品牌笔记、痛点分析、内容日历、监控计划。",
+  },
+  {
+    title: "飞书自动化与团队协作",
+    status: "进行中",
+    desc: "使用 Lark CLI 和飞书能力处理会议纪要、文档、表格、任务和知识库，让企业协作流程更容易被 AI 接管。",
+    evidence: "妙记整理、飞书文档同步、多维表格蓝图、审批/日历/任务流程理解。",
+  },
+  {
+    title: "改装门店小程序需求",
+    status: "推进中",
+    desc: "把业务需求拆成可沟通、可验收的产品文档，连接老板、服务商和实际门店场景。",
+    evidence: "MVP 需求、首页清单、服务商对接文档、审核版说明。",
+  },
+] as const;
+---
+
+<Layout title={`项目 | ${SITE.title}`}>
+  <Header />
+  <Main
+    pageTitle="项目"
+    pageDesc="这些不是包装出来的作品，而是我在真实业务里持续推进、复盘和沉淀的项目档案。"
+  >
+    <section class="grid gap-4 sm:grid-cols-2">
+      {
+        projects.map(project => (
+          <article class="border border-border p-4">
+            <div class="mb-2 text-xs">{project.status}</div>
+            <h2 class="text-xl font-semibold text-accent">{project.title}</h2>
+            <p class="mt-3">{project.desc}</p>
+            <p class="mt-3 text-sm">公开证据：{project.evidence}</p>
+            <div class="mt-4 flex flex-wrap gap-3 text-sm">
+              {"href" in project && (
+                <a
+                  class="text-accent decoration-dashed underline-offset-4 hover:underline"
+                  href={project.href}
+                >
+                  项目说明
+                </a>
+              )}
+              {"repo" in project && (
+                <a
+                  class="text-accent decoration-dashed underline-offset-4 hover:underline"
+                  href={project.repo}
+                  target="_blank"
+                >
+                  GitHub
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    {
+      projectPosts.length > 0 && (
+        <section class="mt-10">
+          <h2 class="text-2xl font-semibold tracking-wide">项目文章</h2>
+          <ul>
+            {projectPosts.map(data => (
+              <Card {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </Main>
+  <Footer />
+</Layout>

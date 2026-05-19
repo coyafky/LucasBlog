@@ -4,12 +4,16 @@ pubDatetime: 2026-05-16T22:42:32+08:00
 title: "Github 仓库：ecommerce-image-suite"
 featured: false
 draft: false
+contentType: "tool"
+status: "learning"
+takeaway: "电商套图生成的核心价值在模板化工作流，而不是让模型自由发挥。"
 tags:
   - "AI"
   - "github"
 description: "AI 生成电商主图"
 timezone: "Asia/Shanghai"
 ---
+
 ## 核心结论
 
 这个仓库（[wzj177/ecommerce-image-suite](https://github.com/wzj177/ecommerce-image-suite)，⭐ 124）解决的是一个具体问题：**电商卖家上传一张商品图，能不能一键生成淘宝/抖音/亚马逊全套主图？**
@@ -50,11 +54,11 @@ flowchart TB
 
 ## 技术架构：三层分离
 
-| 层级 | 模块 | 说明 |
-|------|------|------|
-| 分析层 | `analyze.py` | 视觉识别，输出结构化 JSON |
-| 生成层 | `generate.py` | Prompt 组织 + 调用图像 API |
-| 供应商层 | `check_providers.py` | API Key 检测与路由 |
+| 层级     | 模块                 | 说明                       |
+| -------- | -------------------- | -------------------------- |
+| 分析层   | `analyze.py`         | 视觉识别，输出结构化 JSON  |
+| 生成层   | `generate.py`        | Prompt 组织 + 调用图像 API |
+| 供应商层 | `check_providers.py` | API Key 检测与路由         |
 
 供应商支持国产直连（通义千问、豆包），也支持 OpenAI/Gemini/Stability AI。
 
@@ -90,12 +94,12 @@ python3 scripts/generate.py \
 
 ## 谁适合用
 
-| 场景 | 推荐程度 | 原因 |
-|------|---------|------|
-| 淘宝/抖音服装卖家 | ⭐⭐⭐⭐ | 模板最全，AI 模特+多场景是强需求 |
-| Amazon 跨境卖家 | ⭐⭐⭐ | 支持英文输出，但模特生成需测试 |
-| 独立站/Shopify | ⭐⭐⭐ | 支持 2000×2000 或 16:9，灵活性高 |
-| 电器/食品卖家 | ⭐⭐ | 套图模板较少，场景图生成效果待验证 |
+| 场景              | 推荐程度 | 原因                               |
+| ----------------- | -------- | ---------------------------------- |
+| 淘宝/抖音服装卖家 | ⭐⭐⭐⭐ | 模板最全，AI 模特+多场景是强需求   |
+| Amazon 跨境卖家   | ⭐⭐⭐   | 支持英文输出，但模特生成需测试     |
+| 独立站/Shopify    | ⭐⭐⭐   | 支持 2000×2000 或 16:9，灵活性高   |
+| 电器/食品卖家     | ⭐⭐     | 套图模板较少，场景图生成效果待验证 |
 
 ---
 
@@ -118,5 +122,6 @@ python3 scripts/generate.py \
 ---
 
 **关联项目：**
+
 - [AstroPaper](https://github.com/sartajdev/AstroPaper) — 本博客基于此主题
 - [OpenClaw](https://github.com/nv-coyafky/openclaw-hackathon) — Coya 的 Agent 框架实验

@@ -74,6 +74,16 @@
       @apply flex-[1_0_100%] bg-inherit p-0;
     }
 
+    pre.mermaid {
+      @apply my-8 overflow-x-auto rounded-lg border border-border bg-muted/35 p-4 text-center text-foreground shadow-sm;
+      width: min(100%, calc(100vw - 2rem));
+    }
+
+    pre.mermaid svg {
+      @apply mx-auto h-auto;
+      max-width: none;
+    }
+
     blockquote {
       @apply border-s-accent/80 wrap-break-word opacity-80;
     }
@@ -88,6 +98,14 @@
 
     pre {
       @apply focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-dashed;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .app-prose pre.mermaid {
+      width: min(56rem, calc(100vw - 4rem));
+      margin-inline: 50%;
+      transform: translateX(-50%);
     }
   }
 
